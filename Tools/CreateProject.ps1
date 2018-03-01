@@ -106,7 +106,7 @@ Function FileContains
         [PARAMETER(Mandatory)]
         $String
     )
-    $FileContent = Get-Content $FilePathc
+    $FileContent = Get-Content $FilePath
     foreach($Line in $FileContent)
     {
         if($Line -cmatch $String)
