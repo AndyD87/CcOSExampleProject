@@ -33,7 +33,7 @@ Function Rename
         {
             Rename ($Path + "/" + $Item.Name)
         }
-        if($Item.Name.Contains("CcOSExampleProject"))
+        if($Item.Name -ccontains "CcOSExampleProject")
         {
             $sNewName = $Item.Name.Replace("CcOSExampleProject", $NewProjectName);
             Move-Item ($Path + "/" + $Item.Name) ($Path + "/" + $sNewName) -Force
@@ -73,11 +73,11 @@ Function ReplaceInFiles
         else
         {
             $FileName = $Path + "/" + $Item.Name
-            if(FileContains $FileName "CCOS_EXAMPLE_PROJECT")
+            if(FileContains $FileName "CCOSEXAMPLEPROJECT")
             {
-                FileReplace $FileName "CcOSExampleProject" $NewUpperProjectName
+                FileReplace $FileName "CCOSEXAMPLEPROJECT" $NewUpperProjectName
             }
-            elseif(FileContains $FileName "CcOSExampleProject")
+            if(FileContains $FileName "CcOSExampleProject")
             {
                 FileReplace $FileName "CcOSExampleProject" $NewProjectName
             }
@@ -106,7 +106,7 @@ Function FileContains
         [PARAMETER(Mandatory)]
         $String
     )
-    $FileContent = Get-Content $FilePath
+    $FileContent = Get-Content $FilePathc
     foreach($Line in $FileContent)
     {
         if($Line -cmatch $String)
@@ -146,7 +146,7 @@ Function FileReplace
     $NewFileContent = @()
     foreach($Line in $FileContent)
     {
-        $NewLine = $Line -Replace $String, $Replace
+        $NewLine = $Line -creplace $String, $Replace
         $NewFileContent += $NewLine
     }
     Set-Content $FilePath $NewFileContent
@@ -200,7 +200,36 @@ Function CamelCaseToUpper
     Return $NewString
 }
 
-$NewUpperProjectName = CamelCaseToUpper $NewProjectName
+
+<#
+.SYNOPSIS
+    Simple to upper script
+.DESCRIPTION
+.PARAMETER String
+    String to format into new string
+.EXAMPLE
+    DefaultToUpper "CamleCaseString"
+#>
+Function DefaultToUpper
+{
+    PARAM(
+        [PARAMETER(Mandatory)]
+        [string]$String
+    )
+
+    [char[]]$Chars = $String
+    $Count = 0
+    $NewString = ""
+    foreach($Char in $Chars)
+    {
+        $Append = [char]::ToUpper($Char)
+        $Count++
+        $NewString += $Append
+    }
+    Return $NewString
+}
+
+$NewUpperProjectName = DefaultToUpper $NewProjectName
 $ThisScript = $MyInvocation.MyCommand.Name
 
 Rename ..
