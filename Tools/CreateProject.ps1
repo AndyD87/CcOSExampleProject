@@ -221,4 +221,4 @@ if(Test-Path ../CcOS)
 }
 
 # add CcOS from github
-git submodule add https://github.com/AndyD87/CcOS.git ../CcOS
+git submodule add --force https://github.com/AndyD87/CcOS.git ../CcOS
