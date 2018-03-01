@@ -208,13 +208,16 @@ Rename ..
 ReplaceInFiles ..
 
 # remove current CcOS and .submodules
-if(Test-Path ../CcOS)
-{
-    Remove-Item ../CcOS -Recurse -Force
-}
 if(Test-Path ../.gitmodules)
 {
+    git submodule deinit --all
     Remove-Item ../.gitmodules -Recurse -Force
+}
+
+if(Test-Path ../CcOS)
+{
+    git rm --cached ../CcOS
+    Remove-Item ../CcOS -Recurse -Force
 }
 
 # add CcOS from github
