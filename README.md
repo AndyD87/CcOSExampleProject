@@ -17,6 +17,10 @@ This has to be done to create a new Project named "NewProject"
 - Rename Folder "CcOSExampleProject" to "NewProject" in root directory
 - Rename case sensitive "CcOSExampleProject" to "NewProject" in all files.
 - Rename case sensitive "CCOSEXAMPLEPROJECT" to "NEWPROJECT" in all files. 
+- if it is required to setup CcOS submodule:
+ - Remove .gitmodule
+ - Remove CcOS
+ - Execute *git submodule add https://github.com/AndyD87/CcOS.git ./CcOS*
 
 # Build CcOSExampleProject
 
