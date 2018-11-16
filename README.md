@@ -13,20 +13,24 @@ to other projects too.
 # Create new Project from Example
 
 This has to be done to create a new Project named "NewProject"
-- Clone CcOSExampleProject to "NewProject" root directory
-- Rename Folder "CcOSExampleProject" to "NewProject" in root directory
-- Rename case sensitive "CcOSExampleProject" to "NewProject" in all files.
-- Rename case sensitive "CCOSEXAMPLEPROJECT" to "NEWPROJECT" in all files. 
-- if it is required to setup CcOS submodule:
- - Remove .gitmodule
- - Remove CcOS
- - Execute *git submodule add https://github.com/AndyD87/CcOS.git ./CcOS*
+ - Clone CcOSExampleProject to "NewProject" root directory
+ - Rename Folder "CcOSExampleProject" to "NewProject" in root directory
+ - Rename case sensitive "CcOSExampleProject" to "NewProject" in all files.
+ - Rename case sensitive "CCOSEXAMPLEPROJECT" to "NEWPROJECT" in all files. 
+ - If it is required, setup CcOS submodule:
+   - Remove .gitmodule
+   - Remove CcOS
+   - Execute *git submodule add https://github.com/AndyD87/CcOS.git ./CcOS*
 
 # Build CcOSExampleProject
 
 A little overview:
 * Language: c++11
 * Buildsystem: cmake
+* Sample Travis Ci implementation
+
+Current status:
+* [![Build Status](https://travis-ci.org/AndyD87/CcOSExampleProject.svg?branch=master)](https://travis-ci.org/AndyD87/CcOSExampleProject)
 
 ## Build on Windows
 
@@ -46,7 +50,7 @@ Execute following to get a Solution:
 One way to build on Linux is to use building scripts under Tools:
 
     cd Tools
-    build.sh # change to "buildDebug.sh" if debug is requried
+    sh build.sh # change to "buildDebug.sh" if debug is requried
     cd ..\Solution
 
 Second way is to build on commandline, without build script.
