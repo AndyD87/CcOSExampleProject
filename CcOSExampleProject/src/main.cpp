@@ -25,11 +25,11 @@
 
 #include "CcBase.h"
 #include "CcKernel.h"
-#include "CMainApp.h"
+#include "CcOSExampleProject.h"
 
 int main(int argc, char **argv)
 {
   CcKernel::initCLI();
-  CMainApp oApp(CcArguments(argc, argv));
+  CcOSExampleProject oApp(CcArguments(argc, argv));
   return oApp.exec();
 }

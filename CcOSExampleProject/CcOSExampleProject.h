@@ -1,58 +1,58 @@
 /*
- * This file is part of CMainApp.
+ * This file is part of CcOSExampleProject.
  *
- * CMainApp is free software: you can redistribute it and/or modify
+ * CcOSExampleProject is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CMainApp is distributed in the hope that it will be useful,
+ * CcOSExampleProject is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with CMainApp.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CcOSExampleProject.  If not, see <http://www.gnu.org/licenses/>.
  **/
 /**
- * @page      CMainApp
+ * @page      CcOSExampleProject
  * @copyright Andreas Dirmeier (C) 2017
  * @author    Andreas Dirmeier
  * @par       Web: http://coolcow.de
  * @par       Language   C++ ANSI V3
- * @brief     Class CMainApp
+ * @brief     Class CcOSExampleProject
  **/
-#ifndef CMainApp_H_
-#define CMainApp_H_
+#ifndef CcOSExampleProject_H_
+#define CcOSExampleProject_H_
 
 #include "CcBase.h"
 #include "CcApp.h"
 #include "CcArguments.h"
 
-class CMainAppPrivate;
+class CcOSExampleProjectPrivate;
 
 /**
- * @brief CMainApp impelmentation
+ * @brief CcOSExampleProject impelmentation
  *        Main class wich is loaded to start Application.
  */
-class CMainApp : public CcApp
+class CcOSExampleProject : public CcApp
 {
 public:
   /**
    * @brief Constructor
    */
-  CMainApp(void);
+  CcOSExampleProject(void);
 
   /**
    * @brief Constructor with Arguments
    * @param oArguments: Arguments from cli to pass.
    */
-  CMainApp(const CcArguments& oArguments);
+  CcOSExampleProject(const CcArguments& oArguments);
 
   /**
    * @brief Destructor
    */
-  virtual ~CMainApp( void );
+  virtual ~CcOSExampleProject( void );
 
 private:
   /**
@@ -67,7 +67,7 @@ private:
 
 private:
   CcArguments m_oArguments;               //!< Arguments from starup
-  CMainAppPrivate* m_pPrivate = nullptr;  //!< Private data for applicaton.
+  CcOSExampleProjectPrivate* m_pPrivate = nullptr;  //!< Private data for applicaton.
 };
 
-#endif /* CMainApp_H_ */
+#endif /* CcOSExampleProject_H_ */
