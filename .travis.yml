@@ -11,6 +11,7 @@ compiler:
 install:
   - sudo apt-get install libssl-dev
   - sudo apt-get install libx11-dev
+  - sudo apt-get install ca-certificates
 
 # Build steps
 script:
