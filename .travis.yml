@@ -14,7 +14,7 @@ install:
 
 # Build steps
 script:
-  - env GIT_SSL_NO_VERIFY=true git command
+  - export GIT_SSL_NO_VERIFY=true
   - mkdir build
   - cd build
   - cmake ../
