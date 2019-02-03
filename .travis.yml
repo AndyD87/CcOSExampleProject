@@ -18,7 +18,7 @@ git:
 
 # Build steps
 script:
-  - git config http.sslVerify false
+  - git config --global http.sslVerify false
   - mkdir build
   - cd build
   - cmake ../
