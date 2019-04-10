@@ -33,7 +33,7 @@ Function Rename
         {
             Rename ($Path + "/" + $Item.Name)
         }
-        if($Item.Name -ccontains "CcOSExampleProject")
+        if($Item.Name.contains("CcOSExampleProject"))
         {
             $sNewName = $Item.Name.Replace("CcOSExampleProject", $NewProjectName);
             Move-Item ($Path + "/" + $Item.Name) ($Path + "/" + $sNewName) -Force
