@@ -249,5 +249,5 @@ if(Test-Path ../CcOS)
     Remove-Item ../CcOS -Recurse -Force
 }
 
-# add CcOS from github
-git submodule add --force https://github.com/AndyD87/CcOS.git ../CcOS
+# add CcOS from git source
+git submodule add --force https://coolcow.de/projects/CcOS.git ../CcOS
