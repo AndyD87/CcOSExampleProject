@@ -8,12 +8,28 @@ cmake_minimum_required (VERSION 3.0)
 # Setup Globals
 ################################################################################
 include( ${CMAKE_CURRENT_SOURCE_DIR}/VERSION.cmake )
-include( ${CMAKE_CURRENT_SOURCE_DIR}/CMakeConfig/CcMacros.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/CMakeConfig/ProjectMacros.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/CcOSImport.cmake )
 
 if(WINDOWS)
   set(CMAKE_INSTALL_PREFIX "C:/Program Files/CcOSExampleProject")
 endif()
+
+################################################################################
+# Setup Cache directory if not yet defined
+################################################################################
+if(NOT DEFINED CC_CACHE_DIR)
+  set( CC_CACHE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Cache)
+  if(NOT EXISTS ${CC_CACHE_DIR})
+    file(MAKE_DIRECTORY ${CC_CACHE_DIR})
+  endif()
+endif()
+
+################################################################################
+# Load CcOS
+################################################################################
+CcOSLoad()
+CcOSLoadMacros()
 
 ################################################################################
 # Configuration is done, setup Project
@@ -24,11 +40,11 @@ project("CcOSExampleProject" VERSION "${CCOSEXAMPLEPROJECT_VERSION_CMAKE}")
 # Setup Debug
 ################################################################################
 if(CMAKE_BUILD_TYPE MATCHES "[Dd][Ee][Bb][Uu][Gg]")
-  message("- Build-Type set to ${CMAKE_BUILD_TYPE}")
+  message("- Build-Type set to Debug")
   set(CCOSEXAMPLEPROJECT_BUILD_TYPE "DEBUG" )
   set(CMAKE_VERBOSE_MAKEFILE          ON)
 else()
-  message("Build-Type set to release")
+  message("- Build-Type set to Release")
   set(CCOSEXAMPLEPROJECT_BUILD_TYPE "RELEASE" )
 endif()
 
@@ -50,8 +66,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 ################################################################################
 # Import CcOS
 ################################################################################
-include(CcOSImport.cmake)
+CcOSLoadProjects()
 
+################################################################################
+# Setup CcOSExampleProject Projects
+################################################################################
 add_subdirectory(CcOSExampleProject)
 
 ################################################################################
@@ -64,7 +83,8 @@ set(CPACK_PACKAGE_DESCRIPTION         ${CMAKE_PROJECT})
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "CcOSExampleProject Project")
 set(CPACK_PACKAGE_VENDOR              "Andreas Dirmeier")
 set(CPACK_PACKAGE_CONTACT             "coolcow_ccos@yahoo.com")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY   ${CMAKE_INSTALL_PREFIX})
+set(CPACK_PACKAGE_VERSION             ${PROJECT_VERSION})   
+set(CPACK_PACKAGE_INSTALL_DIRECTORY   ${CMAKE_PROJECT_NAME})
 set(CPACK_RESOURCE_FILE_LICENSE       ${CMAKE_CURRENT_SOURCE_DIR}/Documents/COPYING.LESSER.rtf)
 
 if(LINUX)
@@ -74,8 +94,7 @@ if(LINUX)
   include(CPack)
 elseif(WINDOWS)
   CcLoadWixTools()
-  
-  set(CPACK_GENERATOR "WIX")
-  set(CPACK_WIX_UPGRADE_GUID "552E2605-4939-4FD9-842C-324CFDB6CCF0")
+  set(CPACK_GENERATOR                 "WIX")
+  set(CPACK_WIX_UPGRADE_GUID          "750BDD2D-8242-443A-8921-0953FA67A053")
   include(CPack)
 endif()
