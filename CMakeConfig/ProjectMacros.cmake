@@ -15,17 +15,16 @@ macro (CcOSExampleProjectSetInstall ProjectName )
            ARCHIVE DESTINATION lib/static
            PUBLIC_HEADER DESTINATION include/${ProjectName}
          )
-     
+
   # If we are building just CcOS Framework we have to package all headers and configs
   if("${CMAKE_PROJECT_NAME}" STREQUAL "CcOS")
     set_property( TARGET ${ProjectName} APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES
                   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}>
                 )
     install(EXPORT "${ProjectName}Config" DESTINATION "lib/${ProjectName}")
-    
+
     install( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include
              FILES_MATCHING PATTERN "*.h"
-             PATTERN "*/src"  EXCLUDE
              PATTERN "*/test" EXCLUDE)
   endif()
 endmacro()
@@ -70,7 +69,9 @@ macro( CcOSExampleProjectGenerateRcFileToCurrentDir ProjectName )
   configure_file( ${CCOSEXAMPLEPROJECT_CMAKECONFIG_DIR}/InputFiles/ProjectVersion.rc.in ${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc.tmp @ONLY)
   CcCopyFile(${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc.tmp ${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc)
   if(${ARGC} GREATER 1)
-    list(APPEND ${ARGV1} "${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc")
+    if(NOT DEFINED GCC)
+      list(APPEND ${ARGV1} "${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc")
+    endif()
   endif(${ARGC} GREATER 1)
 endmacro()
 
@@ -89,10 +90,10 @@ endmacro()
 # If Linux, set SOVERSION too.
 ################################################################################
 macro( CcOSExampleProjectLibVersion ProjectName )
-  set_target_properties(${ProjectName} PROPERTIES 
+  set_target_properties(${ProjectName} PROPERTIES
                                         VERSION ${CCOSEXAMPLEPROJECT_VERSION_CMAKE})
   if(LINUX)
-    set_target_properties(${ProjectName} PROPERTIES 
+    set_target_properties(${ProjectName} PROPERTIES
                                           SOVERSION ${CCOSEXAMPLEPROJECT_VERSION_CMAKE} )
   endif(LINUX)
 endmacro()
@@ -107,13 +108,13 @@ macro( CcOSExampleProjectLibSettings ProjectName )
       CcOSExampleProjectSetInstall(${ProjectName})
     endif(${ARGV1} STREQUAL "TRUE")
   endif(${ARGC} GREATER 1)
-  
+
   if(${ARGC} GREATER 2)
     if(${ARGV2} STREQUAL "TRUE")
       CcOSExampleProjectLibVersion(${ProjectName})
     endif(${ARGV2} STREQUAL "TRUE")
   endif(${ARGC} GREATER 2)
-  
+
   if(${ARGC} GREATER 3)
     set(FILES ${ARGN})
     list(REMOVE_AT FILES 0)
