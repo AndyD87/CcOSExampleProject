@@ -22,3 +22,4 @@ then
     exit -1
 fi
 
+echo "No errors detected"
