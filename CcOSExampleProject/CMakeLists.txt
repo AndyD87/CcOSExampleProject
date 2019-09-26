@@ -35,12 +35,12 @@ if(CcOSResource_FOUND)
     set_target_properties("${CURRENT_PROJECT}_Resources" PROPERTIES FOLDER "Resources/${CURRENT_PROJECT_IDE_PATH}")                             
     source_group( "Resources" FILES ${CURRENT_PROJECT_RESOURCE_FILES})
 endif()
-  
+
 #############################################################################
 # Setup project
 #############################################################################
 #add_library( ${CURRENT_PROJECT} ${CC_LINK_TYPE} ${SOURCE_FILES} ${CURRENT_PROJECT_RESOURCE_FILES})
-add_executable( ${CURRENT_PROJECT} ${SOURCE_FILES} ${CURRENT_PROJECT_RESOURCE_FILES})
+CcAddExecutable( ${CURRENT_PROJECT} ${SOURCE_FILES} ${CURRENT_PROJECT_RESOURCE_FILES})
   
 #############################################################################
 # Setup project dependencies
@@ -52,7 +52,8 @@ endif()
 set_property( TARGET ${CURRENT_PROJECT} PROPERTY FOLDER "CcOS/${CURRENT_PROJECT_IDE_PATH}")
   
 target_link_libraries ( ${CURRENT_PROJECT} LINK_PUBLIC
-                                CcKernel)
+                                CcKernel
+                                CcRemoteDevice )
   
 #################
 # Post configuration steps
