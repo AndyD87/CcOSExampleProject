@@ -6,7 +6,7 @@
     Name of new project
 #>
 PARAM( 
-    $NewProjectName = ""
+    $NewProjectName
 )
 
 <#
