@@ -6,6 +6,7 @@
     Name of new project
 #>
 PARAM( 
+    [PARAMETER(Mandatory)]
     $NewProjectName
 )
 
