@@ -19,9 +19,15 @@ endif()
 # Setup Cache directory if not yet defined
 ################################################################################
 if(NOT DEFINED CC_CACHE_DIR)
-  set( CC_CACHE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Cache)
-  if(NOT EXISTS ${CC_CACHE_DIR})
-    file(MAKE_DIRECTORY ${CC_CACHE_DIR})
+  # Check for global Cache dir
+  if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/../Cache)
+    set( CC_CACHE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../Cache)
+  else()
+    # Check for local Cache dir
+    set( CC_CACHE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Cache)
+    if(NOT EXISTS ${CC_CACHE_DIR})
+      file(MAKE_DIRECTORY ${CC_CACHE_DIR})
+    endif()
   endif()
 endif()
 
@@ -34,7 +40,9 @@ CcOSLoadMacros()
 ################################################################################
 # Configuration is done, setup Project
 ################################################################################
-project("CcOSExampleProject" VERSION "${CCOSEXAMPLEPROJECT_VERSION_CMAKE}")
+if(NOT CC_NO_PROJECT)
+  project("CcOSExampleProject" VERSION "${CCOSEXAMPLEPROJECT_VERSION_CMAKE}")
+endif()
 
 ################################################################################
 # Setup Debug
