@@ -1,6 +1,6 @@
  
 set ( CURRENT_PROJECT           "CcOSExampleProject" )
-set ( CURRENT_PROJECT_IDE_PATH  "" )
+set ( CURRENT_PROJECT_IDE_PATH  "CcOSExampleProject" )
   
 #############################################################################
 # Add source Files
@@ -49,7 +49,7 @@ if(CcOSResource_FOUND)
   add_dependencies(${CURRENT_PROJECT} "${CURRENT_PROJECT}_Resources")
 endif()
   
-set_property( TARGET ${CURRENT_PROJECT} PROPERTY FOLDER "CcOS/${CURRENT_PROJECT_IDE_PATH}")
+set_property( TARGET ${CURRENT_PROJECT} PROPERTY FOLDER "${CURRENT_PROJECT_IDE_PATH}")
   
 target_link_libraries ( ${CURRENT_PROJECT} LINK_PUBLIC
                                 CcKernel
@@ -58,8 +58,8 @@ target_link_libraries ( ${CURRENT_PROJECT} LINK_PUBLIC
 #################
 # Post configuration steps
 #################
-CcOSTargetIncludeDirs( ${CURRENT_PROJECT} ${OPENSLL_INCLUDE_DIR} )
-CcOSLibSettings(${CURRENT_PROJECT} TRUE TRUE ${SOURCE_FILES})
+CcOSExampleProjectTargetIncludeDirs( ${CURRENT_PROJECT} ${OPENSLL_INCLUDE_DIR} )
+CcOSExampleProjectLibSettings(${CURRENT_PROJECT} TRUE TRUE ${SOURCE_FILES})
   
 ########
 # Add an unity-test, if available
