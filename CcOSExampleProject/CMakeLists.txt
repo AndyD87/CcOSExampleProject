@@ -60,7 +60,7 @@ target_link_libraries ( ${CURRENT_PROJECT} LINK_PUBLIC
 #################
 CcOSExampleProjectTargetIncludeDirs( ${CURRENT_PROJECT} ${OPENSLL_INCLUDE_DIR} )
 #CcOSExampleProjectLibSettings(${CURRENT_PROJECT} TRUE TRUE ${SOURCE_FILES})
-CcOSExampleProjectExeSettings(${CURRENT_PROJECT} ${SOURCE_FILES})
+CcOSExampleProjectExeSettings(${CURRENT_PROJECT} ${SOURCE_FILES} ${CURRENT_PROJECT_RESOURCE_FILES})
   
 ########
 # Add an unity-test, if available
