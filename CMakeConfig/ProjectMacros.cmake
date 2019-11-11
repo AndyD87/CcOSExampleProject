@@ -123,3 +123,14 @@ macro( CcOSExampleProjectLibSettings ProjectName )
     CcSetFiltersByFolders(${FILES})
   endif(${ARGC} GREATER 3)
 endmacro()
+
+################################################################################
+# Post config Steps afert add_executable:
+# Usage CcOSExampleProjectExeSettings( ProjectName [sSetFiltersByFolders])
+################################################################################
+macro( CcOSExampleProjectExeSettings ProjectName )
+  if(${ARGC} GREATER 1)
+    set(FILES ${ARGN})
+    CcSetFiltersByFolders(${FILES})
+  endif(${ARGC} GREATER 1)
+endmacro()
