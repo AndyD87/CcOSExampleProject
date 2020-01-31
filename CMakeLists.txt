@@ -4,6 +4,26 @@
 ################################################################################
 cmake_minimum_required (VERSION 3.0)
 
+
+# Enable to check memory usage and leakings
+#set(MEMORYMONITOR_ENABLED      TRUE)
+#set(MEMORYMONITOR_CHECK_KERNEL TRUE)
+if($ENV{TEST_CCOS})
+  set(MEMORYMONITOR_ENABLED      TRUE)
+  set(MEMORYMONITOR_CHECK_KERNEL TRUE)
+endif()
+
+
+# Set Debug build if not BUILD_TYPE selected
+#if(NOT CMAKE_BUILD_TYPE)
+#  set(CMAKE_BUILD_TYPE Debug)
+#endif()
+
+# Enable verbose output if required
+#set(CMAKE_VERBOSE_MAKEFILE TRUE CACHE INTERNAL "")
+
+message("-- Default build type: ${CMAKE_BUILD_TYPE}")
+
 ################################################################################
 # Setup Globals
 ################################################################################

@@ -1,6 +1,6 @@
  
 set ( CURRENT_PROJECT           "CcOSExampleProject" )
-set ( CURRENT_PROJECT_IDE_PATH  "CcOSExampleProject" )
+set ( CURRENT_PROJECT_IDE_PATH  "" )
   
 #############################################################################
 # Add source Files

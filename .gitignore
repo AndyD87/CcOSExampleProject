@@ -6,6 +6,14 @@
 /Doku/Doxygen/html
 /Toolchain
 /Cache
+/Documents/Doxygen/config.txt
+/Tools/CcOSTools
+sdkconfig
 CMakeLists.txt.user*
 QtCreatorDeployment.txt
-CcOSExampleProjectVersion.rc
+
+# Temporary download status file
+*.progress
+
+# Generated version files
+#endif /*.rc
