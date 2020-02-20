@@ -13,7 +13,7 @@ file (GLOB SOURCE_FILES
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
   
 if(WINDOWS)
-  CcOSGenerateRcFileToCurrentDir(${CURRENT_PROJECT} SOURCE_FILES )
+  CcOSExampleProjectGenerateRcFileToCurrentDir(${CURRENT_PROJECT} SOURCE_FILES )
 endif()
   
 #############################################################################
@@ -26,11 +26,8 @@ set(CURRENT_PROJECT_RESOURCE_FILES
     ${CMAKE_CURRENT_LIST_DIR}/Resources/CcOSExampleProject.json.h)
    
 if(CcOSResource_FOUND)
-    add_custom_command(OUTPUT ${CMAKE_CURRENT_LIST_DIR}/Resources/CcOSExampleProject.json.c
-                              ${CMAKE_CURRENT_LIST_DIR}/Resources/CcOSExampleProject.json.h
-                              COMMAND CcOSResource -i CcOSExampleProject.json -o CcOSExampleProject.json -n CcOSExampleProject_Json -s
-                              DEPENDS ${CMAKE_CURRENT_LIST_DIR}/Resources/CcOSExampleProject.json
-                              WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/Resources)
+    CcAddResourceString(${CMAKE_CURRENT_LIST_DIR}/Resources CcOSExampleProject.json CcOSExampleProject_Json CURRENT_PROJECT_RESOURCE_FILES)
+
     add_custom_target("${CURRENT_PROJECT}_Resources" DEPENDS  ${CURRENT_PROJECT_RESOURCE_FILES})
     set_target_properties("${CURRENT_PROJECT}_Resources" PROPERTIES FOLDER "Resources/${CURRENT_PROJECT_IDE_PATH}")                             
     source_group( "Resources" FILES ${CURRENT_PROJECT_RESOURCE_FILES})

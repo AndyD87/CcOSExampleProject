@@ -25,7 +25,6 @@
 #include "CExampleTest.h"
 #include "CcKernel.h"
 #include "CcFile.h"
-#include "CcGphotoCamera.h"
 
 CExampleTest::CExampleTest() :
   CcTest("CExampleTest")
@@ -37,7 +36,7 @@ CExampleTest::~CExampleTest()
 {
 }
 
-bool CExampleTest::testStartServer()
+bool CExampleTest::test1()
 {
   CcStatus oStatus = true;
   // Something to test

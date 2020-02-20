@@ -9,6 +9,7 @@
 /Documents/Doxygen/config.txt
 /Tools/CcOSTools
 sdkconfig
+
 CMakeLists.txt.user*
 QtCreatorDeployment.txt
 
@@ -16,4 +17,4 @@ QtCreatorDeployment.txt
 *.progress
 
 # Generated version files
-#endif /*.rc
+*.rc

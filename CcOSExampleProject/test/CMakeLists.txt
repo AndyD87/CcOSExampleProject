@@ -24,9 +24,11 @@ set_property( TARGET ${CURRENT_TEST_PROJECT} PROPERTY FOLDER "/Testing/${CURRENT
 
 source_group( "" FILES ${SOURCE_FILES})
 
-target_link_libraries ( ${CURRENT_TEST_PROJECT} LINK_PRIVATE
-                        ${CURRENT_PROJECT}
-                        CcTesting )
+target_link_libraries ( ${CURRENT_TEST_PROJECT} LINK_PUBLIC
+                        #${CURRENT_PROJECT} # Add it if it is a library
+                        CcKernel
+                        CcTesting 
+)
 
 CcAddTest(${CURRENT_TEST_PROJECT})
 

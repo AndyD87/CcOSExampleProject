@@ -63,14 +63,15 @@ endmacro()
 
 ################################################################################
 # Generate RC-File for MSVC Builds, output is a Version.h File in current dir
+# usage: CcOSGenerateRcFileToCurrentDir( ProjectName [SourceFiles] )
 ################################################################################
 macro( CcOSExampleProjectGenerateRcFileToCurrentDir ProjectName )
   set(PROJECT_NAME "${ProjectName}")
-  configure_file( ${CCOSEXAMPLEPROJECT_CMAKECONFIG_DIR}/InputFiles/ProjectVersion.rc.in ${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc.tmp @ONLY)
-  CcMoveFile(${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc.tmp ${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc)
+  configure_file( ${CCOSEXAMPLEPROJECT_CMAKECONFIG_DIR}/InputFiles/ProjectVersion.rc.in ${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}_Version.rc.tmp @ONLY)
+  CcMoveFile(${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}_Version.rc.tmp ${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}_Version.rc)
   if(${ARGC} GREATER 1)
     if(NOT DEFINED GCC)
-      list(APPEND ${ARGV1} "${CMAKE_CURRENT_SOURCE_DIR}/CcOSExampleProjectVersion.rc")
+      list(APPEND ${ARGV1} "${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}_Version.rc")
     endif()
   endif(${ARGC} GREATER 1)
 endmacro()
