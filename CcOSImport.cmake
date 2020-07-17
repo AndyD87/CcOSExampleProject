@@ -8,10 +8,8 @@ macro(CcOSLoad)
                     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
   endif()
 
-  if(DEFINED CCOS_BOARD)
-    CcOSLoadMacros()
-    message("- Load Board")
-    add_subdirectory(${CCOS_DIR}/${CCOS_BOARD} )
+  if(EXISTS ${CCOS_DIR}/CcOS.config.cmake)
+    include(${CCOS_DIR}/CcOS.config.cmake)
   endif()
 endmacro()
 
