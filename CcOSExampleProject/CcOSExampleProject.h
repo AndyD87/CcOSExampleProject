@@ -29,8 +29,6 @@
 #include "CcApp.h"
 #include "CcArguments.h"
 
-class CcOSExampleProjectPrivate;
-
 /**
  * @brief CcOSExampleProject impelmentation
  *        Main class wich is loaded to start Application.
@@ -66,8 +64,9 @@ private:
   void init();
 
 private:
+  class CPrivate;
   CcArguments m_oArguments;               //!< Arguments from starup
-  CcOSExampleProjectPrivate* m_pPrivate = nullptr;  //!< Private data for applicaton.
+  CPrivate*   m_pPrivate    = nullptr;  //!< Private data for applicaton.
 };
 
 #endif /* CcOSExampleProject_H_ */

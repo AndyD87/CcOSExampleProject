@@ -4,6 +4,7 @@
 ################################################################################
 cmake_minimum_required (VERSION 3.0)
 
+set(CMAKE_PROJECT_NAME "CcOSExampleProject")
 
 # Enable to check memory usage and leakings
 #set(MEMORYMONITOR_ENABLED      TRUE)
@@ -12,7 +13,6 @@ if($ENV{TEST_CCOS})
   set(MEMORYMONITOR_ENABLED      TRUE)
   set(MEMORYMONITOR_CHECK_KERNEL TRUE)
 endif()
-
 
 # Set Debug build if not BUILD_TYPE selected
 #if(NOT CMAKE_BUILD_TYPE)
@@ -32,7 +32,7 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/CMakeConfig/ProjectMacros.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/CcOSImport.cmake )
 
 if(WINDOWS)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files/CcOSExampleProject")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files/${CMAKE_PROJECT_NAME}")
 endif()
 
 ################################################################################
@@ -61,7 +61,7 @@ CcOSLoadMacros()
 # Configuration is done, setup Project
 ################################################################################
 if(NOT CC_NO_PROJECT)
-  project("CcOSExampleProject" VERSION "${CCOSEXAMPLEPROJECT_VERSION_CMAKE}")
+  project(${CMAKE_PROJECT_NAME} VERSION "${CCROBOCAR_VERSION_CMAKE}")
 endif()
 
 ################################################################################
@@ -99,7 +99,7 @@ CcOSLoadProjects()
 ################################################################################
 # Setup CcOSExampleProject Projects
 ################################################################################
-add_subdirectory(CcOSExampleProject)
+add_subdirectory(${CMAKE_PROJECT_NAME})
 
 ################################################################################
 # Update dokumentation
@@ -108,7 +108,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Documents/Doxygen)
 
 
 set(CPACK_PACKAGE_DESCRIPTION         ${CMAKE_PROJECT})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "CcOSExampleProject Project")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${CMAKE_PROJECT_NAME} Project")
 set(CPACK_PACKAGE_VENDOR              "Andreas Dirmeier")
 set(CPACK_PACKAGE_CONTACT             "coolcow_ccos@yahoo.com")
 set(CPACK_PACKAGE_VERSION             ${PROJECT_VERSION})

@@ -29,7 +29,7 @@
 #include "CcConsole.h"
 #include "CcString.h"
 
-class CcOSExampleProjectPrivate
+class CcOSExampleProject::CPrivate
 {
 public:
   CcString oServerconfig;
@@ -57,6 +57,5 @@ void CcOSExampleProject::run()
 
 void CcOSExampleProject::init()
 {
-  m_pPrivate = new CcOSExampleProjectPrivate();
-  CCMONITORNEW(m_pPrivate);
+  CCNEW(m_pPrivate, CPrivate);
 }
