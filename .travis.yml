@@ -29,6 +29,7 @@ env:
 # Build steps
 script:
   - git config --global http.sslVerify false
+  - cd Software
   - mkdir build
   - cd build
   - cmake ../

@@ -3,10 +3,10 @@
 /Output
 /Debug
 /Release
-/Doku/Doxygen/html
+/Doxygen/html
 /Toolchain
 /Cache
-/Documents/Doxygen/config.txt
+/Doxygen/config.txt
 /Tools/CcOSTools
 sdkconfig
 

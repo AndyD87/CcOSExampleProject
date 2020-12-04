@@ -104,7 +104,7 @@ add_subdirectory(${CMAKE_PROJECT_NAME})
 ################################################################################
 # Update dokumentation
 ################################################################################
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Documents/Doxygen)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Doxygen)
 
 
 set(CPACK_PACKAGE_DESCRIPTION         ${CMAKE_PROJECT})
@@ -113,7 +113,7 @@ set(CPACK_PACKAGE_VENDOR              "Andreas Dirmeier")
 set(CPACK_PACKAGE_CONTACT             "coolcow_ccos@yahoo.com")
 set(CPACK_PACKAGE_VERSION             ${PROJECT_VERSION})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY   ${CMAKE_PROJECT_NAME})
-set(CPACK_RESOURCE_FILE_LICENSE       ${CMAKE_CURRENT_SOURCE_DIR}/Documents/COPYING.LESSER.rtf)
+set(CPACK_RESOURCE_FILE_LICENSE       ${CMAKE_CURRENT_SOURCE_DIR}/../Documents/COPYING.LESSER.rtf)
 
 if(LINUX)
   set(CPACK_GENERATOR "DEB")
